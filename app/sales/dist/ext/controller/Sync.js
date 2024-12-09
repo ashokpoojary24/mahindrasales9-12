@@ -1,0 +1,2 @@
+sap.ui.define(["sap/m/MessageToast"],function(e){"use strict";async function n(e){return new Promise((n,s)=>{jQuery.ajax({url:e,method:"GET",dataType:"json",success:function(e){n(e)},error:function(e,n,t){s(new Error(n+": "+t))}})})}return{sync:async function(s){try{debugger;const s=this.getModel().sServiceUrl;const t=s+`getSH()`;const o=await n(t);console.log("Response Data:",o);if(o){e.show("Data Updated Succesfully in Database!")}return o}catch(n){console.error("Error in sync function:",n.message||n);e.show(n)}}}});
+//# sourceMappingURL=Sync.js.map

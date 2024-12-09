@@ -9,17 +9,38 @@ entity Customer {
   key customerId : UUID;
   name : String;
   companyName : String;
+  companyCode : String;
   address : String;
   email : String;
   phone : String;
   userID : String;
   password: String;
-  van : String;
+  van : String default 'NA';
+  vendorCode : String;
+  location : String;
+  contactPerson : String;
+  department : String;
+  jobTitle : String;
+  taxId: String;
+  Currency: String;
+  Language: String;
+  Country: String;
+  City: String;
+  Street: String;
+  postalCode :String;
+  
 
-  @Core.MediaType: panMediaType
-  panCard: LargeBinary;
+
+  @Core.MediaType: panMediaDocType
+  panCardDoc: LargeBinary;
   @Core.IsMediaType: true
-  panMediaType: String;
+  panMediaDocType: String;
+ 
+
+  @Core.MediaType: profilePicType
+  profilePic: LargeBinary;
+  @Core.IsMediaType: true
+  profilePicType: String;
 
   @Core.MediaType: gstCertificateMediaType
   gstCertificate: LargeBinary;
@@ -43,36 +64,52 @@ entity PurchaseEnquiry : managed {
   contactPerson : String;
   division : String;
   distributionChannels : String;
-  status : String;
+  status : String default 'Draft';
   totalAmount : String default '0';
   taxAmount : String default '0';
   grandTotal : String default '0';
   quotationId : String;
-
+  commentsText : String;
+  docType : String;
+  
+  
+salesOrg : String;
+  purchOrg :String;
+  purchGroup :String;
   enquiryToCustomer : Association to one Customer on enquiryToCustomer.customerId=customerId;
   enquiryToVehicle : Composition of many EnquiryVehicle on enquiryToVehicle.vehicleToEnquiry = $self;
   enquiryToFile : Association to many EnquiryFiles on enquiryToFile.fileToEnquiry = $self;
-  enquiryToComments : Composition of many EnquiryComments on enquiryToComments.commentToEnquiry = $self;
+  enquiryToComments : Composition of  many EnquiryComments on enquiryToComments.commentToEnquiry = $self;
 }
 
 entity EnquiryVehicle { 
     key vehicleId : UUID;
-    purchaseEnquiryId : UUID;
+    purchaseEnquiryUuid : UUID;
     materialCode : String;
     vehicleName : String;
     vehicleColor : String;
     quantity : Integer;
     band : String;
+    virtual isChecked : Boolean;
     pricePerUnit : String;
     taxPercentage : String;
     actualPrice : String default '0';
     totalPrice :  String default '0';
     discount : String default '0';
     discountedPrice : String default '0';
-    vehicleToEnquiry : Association to one PurchaseEnquiry on vehicleToEnquiry.purchaseEnquiryId= purchaseEnquiryId;
+    itemNo : String;
+    plant : String; 
+    meterial : String;
+    partnerRole : String;
+    partnerNumber : String;
+
+    delId:String;
+    preferredDelDate:Date;
+    preferredDelLocation:String;
+    preferredTransportMode:String;
+
+    vehicleToEnquiry : Association to one PurchaseEnquiry on vehicleToEnquiry.purchaseEnquiryUuid= purchaseEnquiryUuid;
   }
-
-
 
 entity EnquiryFiles : managed {
     key id        : UUID;
@@ -81,6 +118,8 @@ entity EnquiryFiles : managed {
         content   : LargeBinary;
         @Core.IsMediaType: true
         mediaType : String;
+        fileName  : String;
+        size      : Integer;
         url       : String;
         fileToEnquiry  : Association to one PurchaseEnquiry on fileToEnquiry.purchaseEnquiryUuid = purchaseEnquiryUuid;
         
@@ -89,13 +128,17 @@ entity EnquiryFiles : managed {
 
 entity PurchaseComments:managed{
   key commentId : UUID;
+  user : String;
   purchaseOrderUuid :  UUID;
+  customerId : UUID;
   commentsText : String;
   commentToPurchase: Association to one PurchaseOrder on commentToPurchase.purchaseOrderUuid = purchaseOrderUuid;
 }
 entity EnquiryComments:managed{
   key commentId : UUID;
+  user : String;
   purchaseEnquiryUuid  : UUID;
+  customerId : UUID;
   commentsText : String;
   commentToEnquiry: Association to one PurchaseEnquiry on commentToEnquiry.purchaseEnquiryUuid = purchaseEnquiryUuid;
 }
@@ -118,24 +161,36 @@ entity PurchaseOrder : managed {
 
   transactionId: String;
   accountNo : String;
-  amount : Decimal;
+  amount : String;
   paymentMethod : String;
 
   contactPerson : String;
   division : String;
   distributionChannels : String;
-  purchaseEnquiryID : String;
+  purchaseEnquiryId : String;
   
-  totalPrice : Decimal ;
-  taxAmount : Decimal ;
-  grandTotal : Decimal ;
+  totalPrice : String ;
+  taxAmount : String ;
+  grandTotal : String ;
   quotationID : String;
+  commentsText : String;
+  docType : String;
+  salesOrg : String;
+   purchOrg :String;
+  purchGroup :String;
 
   @Core.MediaType: mediaType
   invoice: LargeBinary;
   @Core.IsMediaType: true
   mediaType: String;
 
+  @Core.MediaType: mediaType
+  paymentBill: LargeBinary;
+  @Core.IsMediaType: true
+  paymentBillType: String;
+  paymentBillFileName : String;
+
+instanceId: String;
   status : String;
   soModifiedAt : Timestamp;
 
@@ -162,15 +217,28 @@ entity PurchaseVehicle {
     discount : Integer ;
     discountedPrice : Decimal ;
 
-    deliveryLeadTime : String;
-    deliveryDate : Date;
-    shippingMethod : String;
-    shippingCharges : String;
 
-    plannedQuantity: String;
-    shippingDate: Date;
-    expectedDeliveryDate : Date;
-    allocationStatus: String;
+    delId:String;
+    preferredDelDate:Date;
+    preferredDelLocation:String;
+    preferredTransportMode:String;
+    delDate:Date;
+    delLocation:String;
+    transportMode:String;
+    deliveryLeadTime : String;
+    // deliveryDate : Date;
+    // shippingMethod : String;
+    // shippingCharges : String;
+
+    // plannedQuantity: String;
+    // shippingDate: Date;
+    // expectedDeliveryDate : Date;
+    // allocationStatus: String;
+    itemNo : String;
+    plant : String;
+    material :String; 
+    partnerRole : String;
+    partnerNumber : String;
 
     vehicleToPurchase : Association to one PurchaseOrder on vehicleToPurchase.purchaseOrderUuid= purchaseOrderUuid;
   }
@@ -184,10 +252,10 @@ entity PurchaseVehicle {
         @Core.IsMediaType: true
         mediaType : String;
         url       : String;
+  fileName  : String;
         filesToPurchase  : Association to one PurchaseOrder on filesToPurchase.purchaseOrderUuid = purchaseOrderUuid;
         
 }
-
 
 
 entity VehicleInventory {
@@ -197,10 +265,16 @@ entity VehicleInventory {
     quantity : Integer;
     pricePerUnit : String;
     taxPercentage : Integer;
-    silver : Integer;
-    gold : Integer;
-    platinum : Integer;
+    silverPer : Integer;
+    goldPer : Integer;
+    platinumPer : Integer;
+    silverMinQty :Integer;
+    goldMinQty :Integer;
+    platinumMinQty :Integer;
 }
-
-
-
+entity  SH {
+  key sHKey : UUID;
+  sHField:String;
+  sHId : String(4);
+  sHDescription:String;
+}

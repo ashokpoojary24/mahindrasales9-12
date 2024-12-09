@@ -27,3 +27,5 @@ cds.on('bootstrap', (app) => {
     });
     app.use(expressApp);
 });
+
+module.exports = cds.server;

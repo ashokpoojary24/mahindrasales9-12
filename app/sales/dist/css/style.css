@@ -1,0 +1,67 @@
+
+.commentHistory {
+    max-height: 600px;
+    padding: 10px;
+}
+
+.chatContainer {
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.chatList {
+    background-color: #f7f7f7;
+    padding: 10px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.messageContainer {
+    padding: 3px;
+    margin: 10px 0;
+    display: flex;
+    align-items: flex-start;
+}
+
+
+.messageHeader {
+    background-color: #efefef;
+    color: #0e0101;
+    border-radius: 10px;
+    padding: 10px;
+    width: 60%;
+    max-width: 60%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.mahindraMessage {
+    align-self: flex-end;
+    background: linear-gradient(45deg, #ee087f, #dd2a7b, #515bd4);
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    width: 50%;
+    max-width: 60%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.messageText {
+    font-size: 1rem;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.messageUser, .messageTime {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.sapMListItems, 
+.sapMLIBSeparator, 
+.sapMLIBBorder, 
+.sapMLIB {
+    border: none !important;
+    box-shadow: none !important; 
+}

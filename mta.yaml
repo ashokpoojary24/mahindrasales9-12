@@ -8,6 +8,9 @@ modules:
   path: gen/srv
   requires:
   - name: Mahindra_sales-db
+  - name: uaa_Mahindra_sales
+  - name: abap_dest
+  - name: Connectivity_instance
   provides:
   - name: srv-api
     properties:
@@ -80,6 +83,17 @@ modules:
     - npm run build:cf
     supported-platforms: []
 resources:
+- name: abap_dest
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite 
+- name: Connectivity_instance
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite    
+
 - name: Mahindra_sales-db
   type: com.sap.xs.hdi-container
   parameters:
@@ -98,11 +112,20 @@ resources:
             ProxyType: Internet
             Type: HTTP
             URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: Mahindra_sales-srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
           existing_destinations_policy: update
       version: 1.0.0
     service: destination
     service-name: Mahindra_sales-destination-service
     service-plan: lite
+  requires:
+  - name: srv-api
 - name: Mahindra_sales_html_repo_host
   type: org.cloudfoundry.managed-service
   parameters:
