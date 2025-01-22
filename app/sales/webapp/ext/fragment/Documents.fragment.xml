@@ -6,7 +6,7 @@
     <VBox id="_IDGenVBox4" core:require="{ handler: 'sales/ext/fragment/Documents' }">
         <upload:UploadSet id="_IDGenUploadSet"
             instantUpload="false"
-            uploadEnabled="true"
+            uploadEnabled="false"
             
             uploadButtonInvisible="true"
             afterItemAdded="handler.onAfterItemAdded"

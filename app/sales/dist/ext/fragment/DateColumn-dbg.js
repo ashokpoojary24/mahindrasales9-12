@@ -4,15 +4,23 @@ sap.ui.define([
     'use strict';
 
     return {
-        onPress: function(oEvent) {
+        onLiveChange : function(oEvent) 
+        {
             debugger
-            var oTable = this._view.byId("sales::PurchaseOrderObjectPage--fe::table::purchaseToVehicle::LineItem::DeliveryDetails")._oTable;
-            var oBinding = oTable.getBinding("rows");
-            if (oBinding) {
-                setTimeout(function() {
-                    oBinding.refresh();  // Pass 'true' to refresh from the backend
-                }.bind(this), 800);
-            }
+            var min = oEvent.getParameter("value");
+            var rows = oEvent.getSource().getParent().getParent().getParent().getRows();
+            rows.forEach((row)=>{
+                var cDate = row.getBindingContext()?.getProperty("delDate");
+                const date1 = new Date(cDate);
+                const date2 = new Date(min);
+                if(cDate &&  date1 < date2 ) min = cDate;
+            });
+            min = new Date(min);
+            min.setDate(min.getDate() - 1)
+            this._view.getModel("ui").setProperty("/minDueDate", min);
+            setTimeout(function() {
+                oEvent.oSource.getParent().getParent().getBindingContext().refresh();
+            }.bind(this), 800);
         }
     };
 });

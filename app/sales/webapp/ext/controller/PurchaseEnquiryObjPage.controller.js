@@ -1,8 +1,6 @@
 sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageBox'], function (ControllerExtension, MessageBox) {
 	'use strict';
-	var paymentDetails, createPV, deletePV, createPV1, deletePV1, Upload, comment, savevisiblity, send, Quotation1, Quotation, comment, comments, a, res = 0, flag = 0, commentText = '';
-	var savedVarsion,commentflag,result,value;
-	var IsActiveEntity,selectedStatus;
+	var result,currentstatus;
 	return ControllerExtension.extend('sales.ext.controller.PurchaseEnquiryObjPage', {
 		// this section allows to extend lifecycle hooks or hooks provided by Fiori elements
 		override: {
@@ -18,385 +16,165 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension', 'sap/m/MessageBox'], funct
 			},
 			editFlow: {
 				onAfterEdit: async function (mParameters) {
-					debugger
-					
-					setTimeout(() => {
-						comments.setEnabled(true);
-						send.setVisible(false);
-					}, 800);
+
 				},
 				onAfterSave: async function (oParameters) {
-					debugger
-					send.setVisible(true);
-					// commentText = comments.getValue();
-					setTimeout(() => {
-						comments.setEnabled(false);
-						send.setVisible(true);
-					}, 800);
-					res = 0;
+
 				}
+				// setDraftStatus: async function (oParameters) { 
+				// 	debugger
+				// 	console.log('hiii aa');
+				// },
+				// toggleDraftActive: async function (oParameters) {
+				// 	debugger
+				// 	this.base.editFlow.setDraftStatus()
+				// }
 
 			},
 			onAfterRendering: async function (oParameter) {
-				debugger
-				this.base.getView().mAggregations.content[0].mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[2].mProperties.text = 'Review Quotation';
-				// const Priceinput1 = aSections[2].mForwardedAggregations.subSections[0].mAggregations._grid.mAggregations.content[3].mAggregations.content.mAggregations.content.mAggregations.formContainers[0].mAggregations.formElements;
-				// 	const Priceinput2 = aSections[3].mForwardedAggregations.subSections[0].mAggregations._grid.mAggregations.content[3].mAggregations.content.mAggregations.content.mAggregations.formContainers[0].mAggregations.formElements;
-				// 	// const Priceinput1 = aSections[3].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[3].mAggregations.content.mAggregations.content.mAggregations.formContainers[0].mAggregations.formElements;
-				// 	Priceinput1.forEach((field)=> {
-				// 		field.mAggregations.fields[0].mAggregations.content.setEditMode("Display");
-				// 	});
-				// 	Priceinput2.forEach((field)=> {
-				// 		field.mAggregations.fields[0].mAggregations.content.setEditMode("Display");
-				// 	})
-					
 			},
 			routing: {
 				onAfterBinding: async function () {
-					debugger
-					var setEditBut = this.base.getView().mAggregations.content[0].mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[2].mProperties.text = 'Review Quotation';
-					selectedStatus = this.getView().mAggregations.content[0].mAggregations.sections[3].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations.columns[10].mAggregations.template.mAggregations.items[0].getSelected();
-					// var discountvalue =  this.getView().mAggregations.content[0].mAggregations.sections[3].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations.columns[8].mAggregations.template.mAggregations.items[0].getSelected();
-					debugger
 					const oView = this.base.getView();
 					const oPage = oView.getContent()[0];
-					const aSections = oPage.getSections();
-
+				    const aSections = oPage.getSections();
+					const oFooter = oPage.getAggregation("footer");
+					setTimeout(() => {
+						const buttons1 = this.base.getView().findAggregatedObjects(true, function (control) {
+							return control.isA("sap.m.Button") && (control.getId().includes("SwitchDraftAndActiveObject"));
+						});
+						if(buttons1[0].getVisible() == true){
+							if(buttons1[0].getText() == "Saved Version"){
+								oFooter.setVisible(false);
+							}else if(buttons1[0].getText() == "Draft"){
+								oFooter.setVisible(true);
+							}
+						}
+					}, 1000);
 					
-					// aSections[2].findAggregatedObjects(true, function (control) {
-					// 	return control.isA("sap.m.Input");
-					// }).forEach(function (oInput) {
-					// 	// oInput.oParent.oParent.oParent.mAggregations.fields[0].mAggregations.content.setEditMode("Display");
-					// });
-
 					
-					// var IsActiveEntity = false; // Example value; replace with the actual condition
-
-					// aSections[3].findAggregatedObjects(true, function (control) {
-					// 	return control.isA("sap.m.Input");
-					// }).forEach(function (oInput) {
-					// 	// Check if the input is the "Discount" field
-					// 	if (oInput.getId().indexOf("Discount") !== -1) {
-					// 		// If IsActiveEntity is false, enable the "Discount" field
-					// 		oInput.setEnabled(!IsActiveEntity);
-					// 	} else {
-					// 		// Make all other fields read-only
-					// 		oInput.setEnabled(false);
-					// 	}
-					// });
-
-
-					createPV = this.base.getView().mAggregations.content[0].mAggregations.sections[2].mForwardedAggregations.subSections[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mForwardedAggregations.actions[1].setVisible(false);
-					deletePV = this.base.getView().mAggregations.content[0].mAggregations.sections[2].mForwardedAggregations.subSections[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mForwardedAggregations.actions[2].setVisible(false);
-					createPV1 = this.base.getView().mAggregations.content[0].mAggregations.sections[3].mForwardedAggregations.subSections[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mForwardedAggregations.actions[1].setVisible(false);
-					deletePV1 = this.base.getView().mAggregations.content[0].mAggregations.sections[3].mForwardedAggregations.subSections[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mForwardedAggregations.actions[2].setVisible(false);
-				
 				},
 				onBeforeBinding: async function (oParameter) {
-					//this.getView().mAggregations.content[0].mAggregations.sections[3].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations.columns[10].mAggregations.template.mAggregations.items[0].setVisible(false)
 					debugger
 					const oView = this.base.getView();
 					const oPage = oView.getContent()[0];
-					const aSections = oPage.getSections();
-					var setEditBut = this.base.getView().mAggregations.content[0].mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[2].mProperties.text = 'Review Quotation';
-					var uuid = window.location.href;
-					const regex1 = /purchaseEnquiryUuid=([a-fA-F0-9-]+)/;
-					const regex = /IsActiveEntity=(true|false)/;
-					const match = uuid.match(regex);
-					if (match) {
-						 IsActiveEntity = match[1];
-						console.log(IsActiveEntity);
+				    const aSections = oPage.getSections();
+					var quotationdetails = aSections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.form.mAggregations.formContainers[0].mAggregations.formElements[13].mAggregations.fields[0];
+					//quotationdetails.setVisible(false)
+					let match = oParameter.getPath().match(/purchaseEnquiryUuid=([\w-]+).*IsActiveEntity=(\w+)/);
+					if(match) {
+						var purchaseEnquiryUuid = match[1];
+						var isActiveEntity = match[2];
 					}
-					if(IsActiveEntity === 'false'){
-						debugger
-						var formelement = aSections[2].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[2].mAggregations.content.mAggregations.content.mAggregations.formContainers[0].mAggregations.formElements;
-						formelement.forEach((field)=> {
-							debugger
-							field.mAggregations.fields[0].mAggregations.content.setEditMode("Display");
-						});
-						var formelements = aSections[3].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[2].mAggregations.content.mAggregations.content.mAggregations.formContainers[0].mAggregations.formElements;
-						formelements.forEach((field)=> {
-							debugger
-							field.mAggregations.fields[0].mAggregations.content.setEditMode("Display");
-						});
-						//aSections[0].findAggregatedObjects(true, function (control) {
-						// 	return control.isA("sap.m.Input");
-						// }).forEach(function (oInput) {
-						// 	debugger
-						// 	oInput.oParent.oParent.oParent.mAggregations.fields[0].mAggregations.content.setEditMode("Display");
-						// });
-						let content = aSections[0].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.content.mAggregations.formContainers[0].mAggregations.formElements;
-						content.forEach((field)=> {
-							debugger
-							// field.mAggregations.fields[0].mAggregations.content.mAggregations.contentEdit[0].setEditable(false);
-							field.mAggregations.fields[0].mAggregations.content.setEditMode("Display");
-						});
-						aSections[1].findAggregatedObjects(true, function (control) {
-							return control.isA("sap.m.Input");
-						}).forEach(function (oInput) {
-							debugger
-							oInput.oParent.oParent.oParent.mAggregations.fields[0].mAggregations.content.setEditMode("Display");
-						});
-						const row = aSections[2].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations._content.mAggregations.rows;
-						row.forEach((r) => {
-							debugger
-							
-							const cells = r.getCells ? r.getCells() : r.getAggregation("content");
-							cells.forEach((cell,index) => {
-									debugger
-									cell.mAggregations.content.setEditMode("Display");
-								
-							});
-						
-					
-						});
-	
-						const rows = aSections[3].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations._content.mAggregations.rows;
-						rows.forEach((row) => {
-							debugger
-							
-							const cells = row.getCells ? row.getCells() : row.getAggregation("content");
-							cells.forEach((cell,index) => {
-								debugger
-								if(index === 10 || index === 9){
-	
-								}
-								else{
-									debugger
-									cell.mAggregations.content.setEditMode("Display") // Disable cell controls
-								 }
-							});
-						
-					
-						});
-						}
-					setTimeout(async ()=>{
-						
-					let oContext12 = oParameter.oBinding.oElementContext;  
-                    let oBindingData = oContext12.getObject();  
-                
-					let funcname100 = 'SalesOrvalue';
-					let oFunction100 = this.getView().getModel().bindContext(`/${funcname100}(...)`);
-					console.log();
-					oFunction100.setParameter('SalesOrg',oBindingData.salesOrg );
-					oFunction100.setParameter('DistChan', oBindingData.distributionChannels);
-					oFunction100.setParameter('Division', oBindingData.division);
-					oFunction100.setParameter('Doctype', oBindingData.docType); 
-					await oFunction100.execute();
-					const oContext11 = oFunction100.getBoundContext();
-                    let result = oContext11.getValue();
-                    
-					console.log('Harsha78',result);
-
-					// let id1 = this.base.getView().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.content.mAggregations.formContainers[0].mAggregations;
-					// id1.formElements[2].getFields()[0].mAggregations.content.mAggregations.contentDisplay.setTooltip(result.value[1]);
-					// id1.formElements[3].getFields()[0].mAggregations.content.mAggregations.contentDisplay.setTooltip(result.value[2]);
-					// id1.formElements[5].getFields()[0].mAggregations.content.mAggregations.contentDisplay.setTooltip(result.value[0]);
-					// id1.formElements[6].getFields()[0].mAggregations.content.mAggregations.contentDisplay.setTooltip(result.value[3]);
-
-					
-					let div3 = this.base.getView().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations.formContainers[0].mAggregations.formElements[2].mAggregations.fields[0].mAggregations.content.mAggregations.contentDisplay.setTooltip(result.value[1]);
-				    let sal = this.base.getView().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations.formContainers[0].mAggregations.formElements[3].mAggregations.fields[0].mAggregations.content.mAggregations.contentDisplay.setTooltip(result.value[0]);
-					let discha = this.base.getView().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations.formContainers[0].mAggregations.formElements[5].mAggregations.fields[0].mAggregations.content.mAggregations.contentDisplay.setTooltip(result.value[2]);
-					let doctyp = this.base.getView().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations.formContainers[0].mAggregations.formElements[6].mAggregations.fields[0].mAggregations.content.mAggregations.contentDisplay.setTooltip(result.value[3]);
-				},1000);
-				
-					
-					this.base.getView().mAggregations.content[0].mAggregations.footer.mAggregations.content.mAggregations.content[4].getVisible();
-					// local
-					// savevisiblity = this.base.getView().mAggregations.content[0].mAggregations.footer.mAggregations.content[4].getVisible();
-
-					Upload = this.base.getView().mAggregations.content[0].mAggregations.sections[4];
-					comment = this.base.getView().mAggregations.content[0].mAggregations.sections[5];
-					Quotation = this.base.getView().mAggregations.content[0].mAggregations.sections[2]
-					Quotation1 = this.base.getView().mAggregations.content[0].mAggregations.sections[3];
-					comments = this.base.getView().mAggregations.content[0].mAggregations.sections[5].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[1];
-					// global
-					send = this.base.getView().mAggregations.content[0].mAggregations.footer.mAggregations.content.mAggregations.content[5];
-					// local
-					// send = this.base.getView().mAggregations.content[0].mAggregations.footer.mAggregations.content.mAggregations.content[5];
-					savedVarsion = sap.ui.getCore().byId("sales::PurchaseEnquiryObjectPage--fe::StandardAction::SwitchDraftAndActiveObject").getVisible();
-					
-					
-					
-					
-		// 			if (savevisiblity === false) {
-		// send.setVisible(false);
-		// 				comments.setEnabled(true);
-		// 			} else {
-		// 				if (savedVarsion == false) {
-		// 					send.setEnabled(true);
-		// 				} else {
-		// 					send.setEnabled(false);
-		// 				}
-		// 				// send.setVisible(true);
-		// 			}
-
-
-					let funcname = 'statusFun';
-					debugger
-					let oFunction = oParameter.getModel().bindContext(`/${funcname}(...)`);
-					
-					const match1 = uuid.match(regex1);
-					if (match1) {
-						a = match1[1];
-						console.log(a);
-					}
-					oFunction.setParameter('purchaseEnquiryUuid', a);
+					var s = 'PE';
+					let oFunction = oParameter.getModel().bindContext(`/statusFun(...)`);
+					oFunction.setParameter('purchaseEnquiryUuid', purchaseEnquiryUuid);
+					oFunction.setParameter('state', s);
 					await oFunction.execute();
-					const oContext = oFunction.getBoundContext();
-					result = oContext.getValue();
-					var statusres = result;
-					debugger
-					var Pe = result.value.purchaseEnquiryId;
-					if (result.value.status === 'Request' || result.value.status === null) {
-						debugger
+					result = oFunction.getBoundContext().getValue();
+
+					var oBindingData = result.value.result;
 					
-						// global
-						var footer = this.base.getView().mAggregations.content[0].mAggregations.footer;
+					console.log('Descriptions PE',result);
+					
+					const buttons = this.base.getView().findAggregatedObjects(true, function (control) {
+						return control.isA("sap.m.Button") && (control.getId().includes("Edit") || control.getId().includes("send"));
+					});
+					const buttons1 = this.base.getView().findAggregatedObjects(true, function (control) {
+						return control.isA("sap.m.Button") && (control.getId().includes("SwitchDraftAndActiveObject"));
+					});
+					
+					
+					const oFooter = oPage.getAggregation("footer");
+					var ToolTip=this.base.getView().mAggregations.content[0].mAggregations.sections[1].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.form.mAggregations.formContainers[0].mAggregations.formElements;
+					const oTextArea = aSections[5].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[1];
+					// let content = aSections[0].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations.formContainers[0].mAggregations.formElements;
+					// let columns = aSections[3].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.getColumns();
+					let columns = aSections[3].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items[0].mAggregations.content.mAggregations.columns;
 
-                        footer.setVisible(true);
-						var ReviewQuotation = this.base.getView().getContent()[0].mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[2].setEnabled(true);
-						// local
-						// var ReviewQuotation = this.base.getView().getContent()[0].mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[2].setVisible(true);
-						Quotation1.setVisible(false);
-						Quotation.setVisible(true);
-						comments.setEnabled(false);
 
+					// columns[8].mAggregations.template.attachChange(function(oEvent) {
+					// 	debugger
+					// 	var newValue = oEvent.getParameter("value");
+					// 	console.log("Value changed to: ", newValue);
+					// });
 
-						let funcname = 'requestFun';
-						let oFunction = oParameter.getModel().bindContext(`/${funcname}(...)`);
-						oFunction.setParameter('peUuid', a);
-						await oFunction.execute();
-						const oContext = oFunction.getBoundContext();
-						result = oContext.getValue();
+					currentstatus = result.value.result.status;
+
+					var text1 = isActiveEntity === 'true' || currentstatus === 'Negotiation'
+					var comboBox1 = isActiveEntity === 'false' && currentstatus === 'Request'
+					this.getView().getModel("ui").setProperty("/text", text1);
+					this.getView().getModel("ui").setProperty("/comboBox", comboBox1);
+
+					if(isActiveEntity === 'true') { 
 						debugger
-						if (match[1] == 'true') {
-							if (result.value.success) {
-								MessageBox.success(result.value.message, {
-									title: "Success",
-									onClose: function () {
-										console.log("Success dialog closed");
-									}
-								});
-								// send.setEnabled(true);
-							} else {
-								const issues = result.value.message.split('<br>');
-								// Concatenate issues into a single formatted string
-								const formattedMessage = issues.join('\n');
-								MessageBox.warning(formattedMessage, {
-									title: "Stocks Warning",
-									onClose: function () {
-										console.log("Warning dialog closed");
-									}
-								});
-								flag = flag + 1;
-								// send.setEnabled(false);
-							}
-							// res = res + 1;
+						oTextArea.setEditable(false);
+						buttons[1].setVisible(true);
+						//columns[10]._oInnerColumn.setVisible(false);
+						if (currentstatus === 'Negotiation') {
+							buttons[0].setEnabled(true);
+							buttons[1].setVisible(true);
+							oFooter.setVisible(true);
+							quotationdetails.setVisible(true)
+							buttons[0].setText('Negotiate');
 						}
-
-					} else if (result.value.status === 'Negotiation') {
-						// global
-						var footer = this.base.getView().mAggregations.content[0].mAggregations.footer;
-
-                        footer.setVisible(true);
-						var ReviewQuotation = this.base.getView().getContent()[0].mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[2].setEnabled(true);
-						// local
-						// var ReviewQuotation = this.base.getView().getContent()[0].mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[2].setVisible(true);
-						Quotation1.setVisible(true);
-						Quotation.setVisible(false);
-						comments.setEnabled(false);
-						send.setVisible(true);
-						const aData = await new Promise((resolve, reject) => {
-							jQuery.ajax({
-								url: `https://3c552736trial-dev-mahindra-sales-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/my/EnquiryVehicle?$filter=purchaseEnquiryUuid eq ${a}`,
-								method: "GET",
-								dataType: "json",
-								success: function (data) {
-									resolve(data);
-								},
-								error: function (jqXHR, textStatus, errorThrown) {
-									reject(new Error(textStatus + ': ' + errorThrown));
-								}
-							});
-						});
-						if (aData && aData.value) {
-							// Loop through all vehicles in the data
-							for (const vehicle of aData.value) {
-								let discountValue = vehicle.discount || ''; // Ensure discount is a string
-								// let isPercentage = discountValue.includes('%');
-								
-								// if (isPercentage) {
-								// 	this.getView().mAggregations.content[0].mAggregations.sections[3].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations.columns[8].mAggregations.template.mAggregations.items[0].setSelected(true);
-								// } else {
-								// 	this.getView().mAggregations.content[0].mAggregations.sections[3].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations.columns[8].mAggregations.template.mAggregations.items[0].setSelected(false);
-								// }
-							}
+						else if (currentstatus === 'Request') { 
+							buttons[0].setEnabled(true);
+							buttons[1].setVisible(true);
+							oFooter.setVisible(true);
+							quotationdetails.setVisible(false);
+							buttons[0].setText('Review Quotation');
+						} else if (currentstatus === 'In Process') {
+							buttons[0].setEnabled(false);
+							buttons[1].setVisible(false);
+							oFooter.setVisible(false);	
+							quotationdetails.setVisible(true)
 						}
-						// let isPercentage = discountvalue.includes('%');
-						// if(isPercentage == true){
-						// 	selectedStatus.setSelected(true);
-						// }else{
-						// 	selectedStatus.setSelected(false);
-						// }
-
-						let funcname = 'negotiationFun';
-						let oFunction = oParameter.getModel().bindContext(`/${funcname}(...)`);
-						oFunction.setParameter('peUuid', a);
-						await oFunction.execute();
-						const oContext = oFunction.getBoundContext();
-						result = oContext.getValue();
-
-					} else if (result.value.status === 'Approved') {
-						// global
-						var ReviewQuotation = this.base.getView().getContent()[0].mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[2].setEnabled(true);
-						// local
-						// var ReviewQuotation = this.base.getView().getContent()[0].mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[2].setVisible(true);
-						Quotation1.setVisible(true);
-						Quotation.setVisible(false);
-						send.setVisible(false);
-
-
-					} else if (result.value.status === 'In Process') {
-						var footer = this.base.getView().mAggregations.content[0].mAggregations.footer;
-						// global
-						var ReviewQuotation = this.base.getView().getContent()[0].mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[2].setEnabled(false);
-						// local
-						// var ReviewQuotation = this.base.getView().getContent()[0].mAggregations.headerTitle.mAggregations._actionsToolbar.mAggregations.content[2].setVisible(true);
-						comments.setEnabled(false);
-						// selectedStatus.setEditMode(false);
-						let funcname = 'inProcessFun';
-						let oFunction = oParameter.getModel().bindContext(`/${funcname}(...)`);
-						oFunction.setParameter('peUuid', a);
-						await oFunction.execute();
-						const oContext = oFunction.getBoundContext();
-						result = oContext.getValue();
-
-						// if (result.value.discount == '0' || !result.value.discount) {
-						// 	Quotation.setVisible(true);
-						// 	Quotation1.setVisible(false);
-						// } else {
-							Quotation.setVisible(false);
-							Quotation1.setVisible(true);
-						// 	var checkbox =this.getView().mAggregations.content[0].mAggregations.sections[3].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[1].mAggregations.content.mAggregations.content.mAggregations.columns[10];
-						// checkbox.setVisible(false);
-						// send.setVisible(false);
-						footer.setVisible(false);
-						//}
-						
+					} 
+					else if(isActiveEntity === 'false')
+					{
+						oTextArea.setEditable(true);
+						buttons[1].setVisible(false);
+						oFooter.setVisible(true);
+						//columns[10]._oInnerColumn.setVisible(true);
 					}
 
-					if(IsActiveEntity === 'false'|| statusres.value.status === 'In Process'){
-						send.setVisible(false);
-						//selectedStatus.setEnabled(true);
-					}else if(IsActiveEntity === 'true'){
-						send.setVisible(true);
-						//selectedStatus.setEnabled(false);
+					if(currentstatus === 'Request'){
+						quotationdetails.setVisible(false);
+						columns[7]._oInnerColumn.setVisible(false);
+						columns[8]._oInnerColumn.setVisible(false);
+						columns[15]._oInnerColumn.setVisible(true);
+						columns[14]._oInnerColumn.setVisible(false);
 					}
+					else if(currentstatus === 'In Process'){
+						quotationdetails.setVisible(true);
+						columns[7]._oInnerColumn.setVisible(true);
+						columns[8]._oInnerColumn.setVisible(false);
+						columns[15]._oInnerColumn.setVisible(false);
+						columns[14]._oInnerColumn.setVisible(true);
+					}
+					else if(currentstatus === 'Negotiation'){
+						quotationdetails.setVisible(true);
+						columns[15]._oInnerColumn.setVisible(false);
+						columns[14]._oInnerColumn.setVisible(true);
+						if(isActiveEntity === 'false'){
+						columns[7]._oInnerColumn.setVisible(true);
+						columns[8]._oInnerColumn.setVisible(true);
+						}
+						else{
+							columns[7]._oInnerColumn.setVisible(true);
+						columns[8]._oInnerColumn.setVisible(false);
+						}
+					}
+					setTimeout(async function() {
+						if(!buttons[0].getEnabled()) buttons[0].setVisible(false);
+						ToolTip[2].mAggregations.fields[0].setText(oBindingData.salesOrg);
+						ToolTip[3].mAggregations.fields[0].setText(oBindingData.distributionChannels);
+						ToolTip[4].mAggregations.fields[0].setText(oBindingData.division);
+						ToolTip[5].mAggregations.fields[0].setText(oBindingData.docType);
+					}.bind(this), 800);	
 				}
 			}
-
 		}
 	});
 });

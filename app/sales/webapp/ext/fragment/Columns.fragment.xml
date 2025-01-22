@@ -1,16 +1,19 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
 	<!-- <Button core:require="{ handler: 'sales/ext/fragment/Columns'}" text="Sample Text" press="handler.onPress" /> -->
 	<VBox id="_IDGenVBox"  >
-	<Text id="_IDGenText" text="{path : 'shippingMethod'}" visible="{= ${IsActiveEntity} }"></Text>
+	<Text id="_IDGenText" text="{path : 'transportMode'}" visible="{= ${IsActiveEntity} }"></Text>
 	<ComboBox 
-        id="myComboBox" 
-        width="100%"
-        selectedKey="{path: 'shippingMethod'}"
-		visible="{= !${IsActiveEntity} }"
-		>
-        <core:Item id="_IDGenItem" key="Road" text="Road" />
-        <core:Item id="_IDGenItem2" key="Ship" text="Ship" />
-        <core:Item id="_IDGenItem3" key="Air" text="Air" />
-    </ComboBox>
+            id="transportMode"
+            width="100%"
+            selectedKey="{transportMode}"
+            visible="{= !${IsActiveEntity} }"
+            items="{
+                path: '/SH',
+                filters: [{path: 'sHField', operator: 'EQ', value1: 'Shipping Type'}]
+            }">
+            <core:ListItem 
+                key="{sHId}" 
+                text="{sHId} ({sHDescription})" />
+        </ComboBox>
 	</VBox>
 </core:FragmentDefinition>

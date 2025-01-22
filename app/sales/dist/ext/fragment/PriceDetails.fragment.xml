@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros">
+    <VBox>
+        <Text text="PriceDetails"/>
+        <macros:Table id="Table" metaPath="enquiryToVehicle/@com.sap.vocabularies.UI.v1.LineItem#tableMacro"/>
+    </VBox>
+</core:FragmentDefinition>

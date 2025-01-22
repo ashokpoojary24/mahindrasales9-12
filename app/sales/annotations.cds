@@ -6,130 +6,86 @@ annotate service.PurchaseEnquiry with @(
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.companyName,
-                Label : 'Company Name:',
+                Label : 'Company Name',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.phone,
-                Label : 'Contact Number:',
+                Label : 'Contact Number',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.email,
-                Label : 'Email:',
+                Label : 'Email',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.van,
-                Label : 'Virtual Account Number:',
+                Label : 'Virtual Account Number',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.address,
-                Label : 'Address:',
+                Label : 'Address',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.jobTitle,
-                Label : 'Job Title:',
+                Label : 'Job Title',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.department,
-                Label : 'Department:',
+                Label : 'Department',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.taxId,
-                Label : 'Tax ID:',
+                Label : 'Tax ID',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.Currency,
-                Label : 'Currency:',
+                Label : 'Currency',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.Language,
-                Label : 'Language:',
+                Label : 'Language',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.Country,
-                Label : 'Country:',
+                Label : 'Country',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.City,
-                Label : 'City:',
+                Label : 'City',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.Street,
-                Label : 'Street:',
+                Label : 'Street',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.postalCode,
-                Label : 'Postal Code:',
+                Label : 'Postal Code',
             },
             {
                 $Type : 'UI.DataField',
                 Value : enquiryToCustomer.location,
-                Label : 'Location:',
+                Label : 'Location',
             },
         ],
     },
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'Customer Information',
-            Target : '@UI.FieldGroup#GeneratedGroup',
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Label : 'Inquiry Details',
-            ID : 'EnquiryDetails',
-            Target : '@UI.FieldGroup#EnquiryDetails',
-        },
-        {
-            $Type : 'UI.CollectionFacet',
-            Label : 'Quotation Details',
-            ID : 'Quotation',
-            Facets : [
-                {
-                    $Type : 'UI.ReferenceFacet',
-                    Label : 'Vehicle Details',
-                    ID : 'VehicleDetails',
-                    Target : 'enquiryToVehicle/@UI.LineItem#VehicleDetails',
-                },
-                {
-                    $Type : 'UI.ReferenceFacet',
-                    Label : 'Price',
-                    ID : 'Price',
-                    Target : '@UI.FieldGroup#Price',
-                },
-            ],
-        },
-        {
-            $Type : 'UI.CollectionFacet',
-            Label : 'Quotation Details',
-            ID : 'QuotationDetails1',
-            Facets : [
-                {
-                    $Type : 'UI.ReferenceFacet',
-                    Label : 'Vehicle Details',
-                    ID : 'VehicleDetails1',
-                    Target : 'enquiryToVehicle/@UI.LineItem#VehicleDetails1',
-                },
-                {
-                    $Type : 'UI.ReferenceFacet',
-                    Label : 'Price',
-                    ID : 'Price1',
-                    Target : '@UI.FieldGroup#Price1',
-                },
-            ],
+            Label : 'Partners',
+            ID : 'Partners',
+            Target : 'enquiryToPartners/@UI.PresentationVariant#Partners',
         },
     ],
     UI.LineItem : [
@@ -154,38 +110,33 @@ annotate service.PurchaseEnquiry with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Value : deliveryLocation,
-                Label : 'Delivery Location:',
-            },
-            {
-                $Type : 'UI.DataField',
                 Value : contactPerson,
-                Label : 'Contact Person:',
+                Label : 'Contact Person',
             },
             {
                 $Type : 'UI.DataField',
                 Value : division,
-                Label : 'Division:',
+                Label : 'Division',
             },
             {
                 $Type : 'UI.DataField',
                 Value : salesOrg,
-                Label : 'Sales Organization:',
+                Label : 'Sales Organization',
             },
             {
                 $Type : 'UI.DataField',
                 Value : purchaseEnquiryId,
-                Label : 'Purchase Inquiry ID:',
+                Label : 'Purchase Inquiry ID',
             },
             {
                 $Type : 'UI.DataField',
                 Value : distributionChannels,
-                Label : 'Distribution Channel:',
+                Label : 'Distribution Channel',
             },
             {
                 $Type : 'UI.DataField',
                 Value : docType,
-                Label : 'Document Type:',
+                Label : 'Document Type',
             },
         ],
     },
@@ -474,68 +425,6 @@ annotate service.EnquiryVehicle with @(
         {
             $Type : 'UI.DataField',
             Value : vehicleName,
-            Label : 'VehicleName',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : vehicleColor,
-            Label : 'Vehicle Color',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : partnerRole,
-            Label : 'partnerRole',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : partnerNumber,
-            Label : 'partnerNumber',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : quantity,
-            Label : 'Quantity',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : pricePerUnit,
-            Label : 'Price Per Unit',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : actualPrice,
-            Label : 'Actual Price',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : band,
-            Label : 'Band',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : discountedPrice,
-            Label : 'Discounted Price',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : taxPercentage,
-            Label : 'taxPercentage',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : totalPrice,
-            Label : 'Total Price',
-        },
-    ],
-    UI.LineItem #VehicleDetails1 : [
-        {
-            $Type : 'UI.DataField',
-            Value : materialCode,
-            Label : 'Material Code',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : vehicleName,
             Label : 'Vehicle Name',
         },
         {
@@ -546,12 +435,12 @@ annotate service.EnquiryVehicle with @(
         {
             $Type : 'UI.DataField',
             Value : partnerRole,
-            Label : 'partnerRole',
+            Label : 'Partner Role',
         },
         {
             $Type : 'UI.DataField',
             Value : partnerNumber,
-            Label : 'partnerNumber',
+            Label : 'Partner Number',
         },
         {
             $Type : 'UI.DataField',
@@ -572,11 +461,6 @@ annotate service.EnquiryVehicle with @(
             $Type : 'UI.DataField',
             Value : band,
             Label : 'Band',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : discount,
-            Label : 'Discount',
         },
         {
             $Type : 'UI.DataField',
@@ -593,6 +477,115 @@ annotate service.EnquiryVehicle with @(
             Value : totalPrice,
             Label : 'Total Price',
         },
+        {
+            $Type : 'UI.DataField',
+            Value : preferredDelDate,
+            Label : 'Preferred Delivery Date',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : preferredDelLocation,
+            Label : 'Preferred Delivery Location',
+        },
+    ],
+    UI.LineItem #VehicleDetails1 : [
+        {
+            $Type : 'UI.DataField',
+            Value : vehicleName,
+            Label : 'Vehicle Name',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : vehicleColor,
+            Label : 'Vehicle Color',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : pricePerUnit,
+            Label : 'Price Per Unit',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : actualPrice,
+            Label : 'Actual Price',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : band,
+            Label : 'Band',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : taxPercentage,
+            Label : 'Tax Percentage',
+        },
+    ],
+    UI.LineItem #tableMacro : [
+        {
+            $Type : 'UI.DataField',
+            Value : materialCode,
+            Label : 'Material Code',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : vehicleName,
+            Label : 'Vehicle Name',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : vehicleColor,
+            Label : ' Vehicle Color',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : quantity,
+            Label : 'Quantity',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : pricePerUnit,
+            Label : 'Price Per Unit',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : actualPrice,
+            Label : 'Actual Price',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : band,
+            Label : 'Band(%)',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : discountedPrice,
+            Label : 'Discounted Price',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : taxPercentage,
+            Label : 'Tax Percentage',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : totalPrice,
+            Label : 'Total Price',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : preferredDelDate,
+            Label : 'Preferred Delivery Date',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : preferredDelLocation,
+            Label : 'Preferred Delivery Location',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : plant,
+            Label : 'Plant',
+        },
     ],
 );
 
@@ -605,6 +598,11 @@ annotate service.PurchaseOrder with @(
         },
         {
             $Type : 'UI.DataField',
+            Value : purchaseEnquiryId,
+            Label : 'Purchase Enquiry Id',
+        },
+        {
+            $Type : 'UI.DataField',
             Value : purchaseToCustomer.companyName,
             Label : 'Company Name',
         },
@@ -612,6 +610,11 @@ annotate service.PurchaseOrder with @(
             $Type : 'UI.DataField',
             Value : contactPerson,
             Label : 'Contact Person',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : status,
+            Label : 'status',
         },
     ],
     UI.SelectionPresentationVariant #tableView : {
@@ -649,22 +652,7 @@ annotate service.PurchaseOrder with @(
                         {
                             Sign : #I,
                             Option : #EQ,
-                            Low : 'SO Not Released',
-                        },
-                        {
-                            Sign : #I,
-                            Option : #EQ,
                             Low : 'Approved',
-                        },
-                        {
-                            Sign : #I,
-                            Option : #EQ,
-                            Low : 'Sent For Release',
-                        },
-                        {
-                            Sign : #I,
-                            Option : #EQ,
-                            Low : 'Rejected',
                         },
                     ],
                 },
@@ -687,21 +675,21 @@ annotate service.PurchaseOrder with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Customer Information',
-            ID : 'CustomerInformation',
-            Target : '@UI.FieldGroup#CustomerInformation',
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Label : 'Sales Order Details',
+            Label : 'Purchase Order Details',
             ID : 'EnquiryDetials',
             Target : '@UI.FieldGroup#EnquiryDetials',
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Vehicle Details',
-            ID : 'VehicleDetails1',
-            Target : 'purchaseToVehicle/@UI.LineItem#VehicleDetails1',
+            Label : 'Sales Order Details',
+            ID : 'SalesOrderDetails',
+            Target : '@UI.FieldGroup#SalesOrderDetails',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Partners',
+            ID : 'Partners',
+            Target : 'purchaseToPartners/@UI.PresentationVariant#Partners',
         },
         {
             $Type : 'UI.CollectionFacet',
@@ -710,7 +698,6 @@ annotate service.PurchaseOrder with @(
             Facets : [
                 {
                     $Type : 'UI.ReferenceFacet',
-                    Label : 'Vehicle Details',
                     ID : 'VehicleDetails',
                     Target : 'purchaseToVehicle/@UI.LineItem#VehicleDetails',
                 },
@@ -731,14 +718,8 @@ annotate service.PurchaseOrder with @(
         {
             $Type : 'UI.ReferenceFacet',
             Label : 'Payment Details',
-            ID : 'PaymentDetails',
-            Target : '@UI.FieldGroup#PaymentDetails',
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Label : 'Transaction Details',
-            ID : 'TransactionDetails',
-            Target : '@UI.FieldGroup#TransactionDetails',
+            ID : 'PaymentDetails1',
+            Target : '@UI.FieldGroup#PaymentDetails1',
         },
     ],
     UI.FieldGroup #CustomerInformation : {
@@ -792,12 +773,7 @@ annotate service.PurchaseOrder with @(
             {
                 $Type : 'UI.DataField',
                 Value : purchaseToCustomer.taxId,
-                Label : 'Tax ID',
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : deliveryLocation,
-                Label : 'Delivery Location',
+                Label : 'Tax Id',
             },
             {
                 $Type : 'UI.DataField',
@@ -811,8 +787,33 @@ annotate service.PurchaseOrder with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : status,
-                Label : 'status',
+                Value : purchaseToCustomer.City,
+                Label : 'City',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : purchaseToCustomer.Country,
+                Label : 'Country',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : purchaseToCustomer.Currency,
+                Label : 'Currency',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : purchaseToCustomer.Language,
+                Label : 'Language',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : purchaseToCustomer.postalCode,
+                Label : 'Postal Code',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : purchaseToCustomer.Street,
+                Label : 'Street',
             },
         ],
     },
@@ -822,17 +823,57 @@ annotate service.PurchaseOrder with @(
             {
                 $Type : 'UI.DataField',
                 Value : purchaseOrderId,
-                Label : 'Purchase OrderId',
+                Label : 'Purchase Order Id',
             },
             {
                 $Type : 'UI.DataField',
-                Value : quotationID,
-                Label : 'Quotation ID',
+                Value : contactPerson,
+                Label : 'Contact Person',
             },
             {
                 $Type : 'UI.DataField',
-                Value : deliveryLocation,
-                Label : 'Delivery Location',
+                Value : purchaseEnquiryId,
+                Label : 'Purchase Enquiry Id',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : salesOrg,
+                Label : 'Sales Organisation',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : division,
+                Label : 'Division',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : distributionChannels,
+                Label : 'Distribution Channels',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : docType,
+                Label : 'Document Type',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : vendorCode,
+                Label : 'Vendor Code',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : companyCode,
+                Label : 'Company Code',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : purchOrg,
+                Label : 'Purchase Organization',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : purchGroup,
+                Label : 'Purchase Group',
             },
         ],
     },
@@ -892,18 +933,28 @@ annotate service.PurchaseOrder with @(
     UI.LineItem #tableView2 : [
         {
             $Type : 'UI.DataField',
-            Value : purchaseOrderId,
-            Label : 'Purchase  Order ID',
-        },
-        {
-            $Type : 'UI.DataField',
             Value : purchaseToCustomer.companyName,
             Label : 'Company Name',
         },
         {
             $Type : 'UI.DataField',
+            Value : purchaseOrderId,
+            Label : 'Purchase  Order ID',
+        },
+        {
+            $Type : 'UI.DataField',
             Value : purchaseToCustomer.contactPerson,
             Label : 'Contact Person',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : purchaseEnquiryId,
+            Label : 'Purchase Enquiry ID',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : status,
+            Label : 'Status',
         },
     ],
     UI.SelectionPresentationVariant #tableView2 : {
@@ -931,23 +982,48 @@ annotate service.PurchaseOrder with @(
                         {
                             Sign : #I,
                             Option : #EQ,
-                            Low : 'Confirmed',
+                            Low : 'Waiting for Payment Confirmation',
                         },
                         {
                             Sign : #I,
                             Option : #EQ,
-                            Low : 'Details Sent',
+                            Low : 'Credit Request',
                         },
                         {
                             Sign : #I,
                             Option : #EQ,
                             Low : 'Payment Confirmed',
                         },
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Paid',
+                        },
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Credit Approved',
+                        },
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Payment Overdue',
+                        },
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Sent for Release',
+                        },
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'SO Not Released',
+                        },
                     ],
                 },
             ],
         },
-        Text : 'Payment Details',
+        Text : 'Sales Orders',
     },
     UI.LineItem #tableView3 : [
         {
@@ -1137,7 +1213,7 @@ annotate service.PurchaseOrder with @(
             {
                 $Type : 'UI.DataField',
                 Value : transactionId,
-                Label : 'Transaction ID',
+                Label : 'Transaction Id',
             },
             {
                 $Type : 'UI.DataField',
@@ -1151,9 +1227,342 @@ annotate service.PurchaseOrder with @(
             },
         ],
     },
+    UI.FieldGroup #SalesOrderDetails : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : salesOrderId,
+                Label : 'Sales Order Id',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : salesOrg,
+                Label : 'Sales Organisation',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : dealerCode,
+                Label : 'Dealer Code',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : distributionChannels,
+                Label : 'Distribution Channels',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : division,
+                Label : 'Division',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : docType,
+                Label : 'Document Type',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : quotationID,
+                Label : 'Quotation Id',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : vendorCode,
+                Label : 'Vendor Code',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : companyCode,
+                Label : 'Company Code',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : purchOrg,
+                Label : 'Purchase Organisation',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : purchGroup,
+                Label : 'Purchase Group',
+            },
+        ],
+    },
+    UI.FieldGroup #PaymentDetails1 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : bankName,
+                Label : 'Bank Name',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : accNumber,
+                Label : 'Account Number',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : accHoldersName,
+                Label : 'Account Holders Name',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : ifscCode,
+                Label : 'IFSC Code',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : branch,
+                Label : 'Branch',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : dueDate,
+                Label : 'Due Date',
+            },
+        ],
+    },
+    UI.LineItem #tableView6 : [
+        {
+            $Type : 'UI.DataField',
+            Value : purchaseToCustomer.companyName,
+            Label : 'Company Name',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : purchaseOrderId,
+            Label : 'Purchase Order Id',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : purchaseEnquiryId,
+            Label : 'Purchase Enquiry Id',
+        },
+    ],
+    UI.SelectionPresentationVariant #tableView6 : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView6',
+            ],
+            SortOrder : [
+                {
+                    $Type : 'Common.SortOrderType',
+                    Property : soModifiedAt,
+                    Descending : true,
+                },
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+                {
+                    $Type : 'UI.SelectOptionType',
+                    PropertyName : status,
+                    Ranges : [
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'SO Pending',
+                        },
+                    ],
+                },
+            ],
+        },
+        Text : 'Pending Purchase Orders',
+    },
+    UI.LineItem #tableView7 : [
+        {
+            $Type : 'UI.DataField',
+            Value : purchaseToCustomer.companyName,
+            Label : 'Company Name',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : purchaseOrderId,
+            Label : 'Purchase Order Id',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : purchaseEnquiryId,
+            Label : 'Purchase Enquiry Id',
+        },
+    ],
+    UI.SelectionPresentationVariant #tableView7 : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView7',
+            ],
+            SortOrder : [
+                {
+                    $Type : 'Common.SortOrderType',
+                    Property : soModifiedAt,
+                    Descending : true,
+                },
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+                {
+                    $Type : 'UI.SelectOptionType',
+                    PropertyName : status,
+                    Ranges : [
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'SO Pending',
+                        },
+                    ],
+                },
+            ],
+        },
+        Text : 'Pending Sales Orders',
+    },
+    UI.LineItem #tableView8 : [
+        {
+            $Type : 'UI.DataField',
+            Value : purchaseToCustomer.companyName,
+            Label : 'Company Name',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : salesOrderId,
+            Label : 'Sales Order Id',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : status,
+            Label : 'Status',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : purchaseOrderId,
+            Label : 'purchaseOrderId',
+        },
+    ],
+    UI.SelectionPresentationVariant #tableView8 : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView8',
+            ],
+            SortOrder : [
+                {
+                    $Type : 'Common.SortOrderType',
+                    Property : soModifiedAt,
+                    Descending : true,
+                },
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+                {
+                    $Type : 'UI.SelectOptionType',
+                    PropertyName : status,
+                    Ranges : [
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Sent for Release',
+                        },
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Waiting for Payment Confirmation',
+                        },
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Payment Confirmed',
+                        },
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Paid',
+                        },
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Credit Request',
+                        },
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Credit Approved',
+                        },
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Payment Overdue',
+                        },
+                    ],
+                },
+            ],
+        },
+        Text : 'Sales Orders',
+    },
+    UI.FieldGroup #CustomerDetails : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+        ],
+    },
+    UI.LineItem #tableView9 : [
+        {
+            $Type : 'UI.DataField',
+            Value : purchaseOrderId,
+            Label : 'Purchase Order Id',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : purchaseEnquiryId,
+            Label : 'Purchase Enquiry Id',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : purchaseToCustomer.companyName,
+            Label : 'Company Name',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : contactPerson,
+            Label : 'Contact Person',
+        },
+    ],
+    UI.SelectionPresentationVariant #tableView9 : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView9',
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+                {
+                    $Type : 'UI.SelectOptionType',
+                    PropertyName : status,
+                    Ranges : [
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Rejected',
+                        },
+                    ],
+                },
+            ],
+        },
+        Text : 'Rejected Orders',
+    },
 );
 
-annotate service.PurchaseFiles with @(
+annotate service.EnquiryFiles with @(
     UI.LineItem #tableView : [
     ],
     UI.SelectionPresentationVariant #tableView : {
@@ -1169,7 +1578,7 @@ annotate service.PurchaseFiles with @(
             SelectOptions : [
             ],
         },
-        Text : 'Table View PurchaseFiles',
+        Text : 'Table View EnquiryFiles',
     }
 );
 
@@ -1192,18 +1601,8 @@ annotate service.PurchaseVehicle with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : partnerNumber,
-            Label : 'partnerNumber',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : partnerRole,
-            Label : 'partnerRole',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : taxPercentage,
-            Label : 'Tax Percentage',
+            Value : quantity,
+            Label : 'Quantity',
         },
         {
             $Type : 'UI.DataField',
@@ -1212,13 +1611,13 @@ annotate service.PurchaseVehicle with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : quantity,
-            Label : 'Quantity',
+            Value : actualPrice,
+            Label : 'Actual Price',
         },
         {
             $Type : 'UI.DataField',
-            Value : actualPrice,
-            Label : 'Actual Price',
+            Value : band,
+            Label : 'Band(%)',
         },
         {
             $Type : 'UI.DataField',
@@ -1232,8 +1631,8 @@ annotate service.PurchaseVehicle with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : band,
-            Label : 'Band(%)',
+            Value : taxPercentage,
+            Label : 'Tax Percentage',
         },
         {
             $Type : 'UI.DataField',
@@ -1267,24 +1666,40 @@ annotate service.PurchaseVehicle with @(
         {
             $Type : 'UI.DataField',
             Value : materialCode,
-            Label : 'Vehicle Code',
+            Label : 'Material Code',
         },
         {
             $Type : 'UI.DataField',
-            Value : deliveryDate,
-            Label : 'Delivery Date',
+            Value : delId,
+            Label : 'Delivery ID',
         },
         {
             $Type : 'UI.DataField',
-            Value : deliveryLeadTime,
-            Label : 'Delivery Lead Time',
+            Value : preferredDelLocation,
+            Label : 'Preferred Delivery Location',
         },
         {
             $Type : 'UI.DataField',
-            Value : shippingCharges,
-            Label : 'Shipping Charges',
+            Value : preferredDelDate,
+            Label : 'Preferred Delivery Date',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : delLocation,
+            Label : 'Delivery Location',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : plant,
+            Label : 'Plant',
         },
     ],
+    UI.PresentationVariant #VehicleDetails : {
+        $Type : 'UI.PresentationVariantType',
+        Visualizations : [
+            '@UI.LineItem#VehicleDetails',
+        ],
+    },
 );
 
 
@@ -1304,7 +1719,251 @@ annotate service.PurchaseOrder with {
     ifscCode @Common.FieldControl : #ReadOnly
 };
 
+annotate service.EnquiryVehicle with {
+    vehicleName @Common.FieldControl : #ReadOnly
+};
+
+annotate service.EnquiryVehicle with {
+    vehicleColor @Common.FieldControl : #ReadOnly
+};
+
+annotate service.EnquiryVehicle with {
+    taxPercentage @Common.FieldControl : #ReadOnly
+};
+
+annotate service.EnquiryVehicle with {
+    band @Common.FieldControl : #ReadOnly
+};
+
+annotate service.EnquiryVehicle with {
+    pricePerUnit @Common.FieldControl : #ReadOnly
+};
+
+annotate service.EnquiryVehicle with {
+    actualPrice @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseEnquiry with @(UI: {
+    CreateHidden: true
+});
+annotate service.PurchaseOrder with @(UI: {
+    CreateHidden: true
+});
+
+annotate service.EnquiryVehicle with @(UI: {
+    CreateHidden: true,
+    DeleteHidden: true
+});
+
+annotate service.PurchaseVehicle with @(UI: {
+    CreateHidden: true,
+    DeleteHidden: true
+});
+
 annotate service.PurchaseOrder with {
-    dueDate @Common.FieldControl : #ReadOnly
+    branch @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    purchaseOrderId @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    quotationID @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    contactPerson @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    purchaseEnquiryId @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    division @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    distributionChannels @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    docType @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    salesOrderId @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    materialCode @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    vehicleName @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    vehicleColor @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    // partnerNumber @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    // partnerRole @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    quantity @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    pricePerUnit @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    actualPrice @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    band @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    discount @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    discountedPrice @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    taxPercentage @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    totalPrice @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    preferredDelDate @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    preferredDelLocation @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    salesOrg @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    totalPrice @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    taxAmount @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    grandTotal @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    delId @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseVehicle with {
+    plant @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    vendorCode @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    companyCode @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    purchOrg @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchaseOrder with {
+    purchGroup @Common.FieldControl : #ReadOnly
+};
+
+annotate service.EnquiryPartners with @(
+    UI.LineItem #Partners : [
+        
+    ],
+    UI.PresentationVariant #Partners : {
+        $Type : 'UI.PresentationVariantType',
+        Visualizations : [
+            '@UI.LineItem#Partners',
+        ],
+        SortOrder : [
+            {
+                $Type : 'Common.SortOrderType',
+                Property : partnerRole,
+                Descending : true,
+            },
+        ],
+    },
+);
+
+annotate service.PurchasePartners with @(
+    UI.LineItem #Partners : [
+        {
+            $Type : 'UI.DataField',
+            Value : partnerNumber,
+            Label : 'Partner Number',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : partnerName,
+            Label : 'Partner Name',
+        },
+    ],
+    UI.PresentationVariant #Partners : {
+        $Type : 'UI.PresentationVariantType',
+        Visualizations : [
+            '@UI.LineItem#Partners',
+        ],
+        SortOrder : [
+            {
+                $Type : 'Common.SortOrderType',
+                Property : partnerRole,
+                Descending : true,
+            },
+        ],
+    },
+);
+
+annotate service.PurchasePartners with {
+    partnerNumber @Common.FieldControl : #ReadOnly
+};
+
+annotate service.PurchasePartners with {
+    partnerRole @Common.FieldControl : #ReadOnly
+};
+
+
+annotate service.PurchasePartners with @(UI: {
+    CreateHidden: true,
+    DeleteHidden: true
+});
+
+annotate service.EnquiryPartners with @(UI: {
+    CreateHidden: true,
+    DeleteHidden: true
+});
+
+
+annotate service.PurchasePartners with {
+    partnerName @Common.FieldControl : #ReadOnly
 };
 

@@ -2,10 +2,14 @@
 	<!-- <VBox core:require="{ handler: 'sales/ext/fragment/ViewInvoice'}">
 		<Button text="ViewInvoice" press="handler.onPress" />
 	</VBox> -->
-	<VBox id="_IDGenVBox8"  core:require="{ handler: 'sales/ext/fragment/ViewInvoice'}" justifyContent="Center" alignItems="Center" width="90vw" height="100vh">
+	<HBox id="_IDGenVBox8"  core:require="{ handler: 'sales/ext/fragment/ViewInvoice'}" justifyContent="Center" alignItems="Center" width="90vw" height="100vh">
 		<PDFViewer id="_IDGenPDFViewer"  source="{path: 'invoice'}" 
                    showDownloadButton="true" isTrustedSource="true" 
-                   height="90vh" width="70vw" 
-                   class="sapUiLargeMargin" />
-	</VBox>
+                   height="90vh" width="40vw" 
+                   class="sapUiLargeMargin" title="Invoice" visible="{ui>/visible-pdf1}"/>
+		<PDFViewer id="_IDGenPDFViewer2"  source="{path: 'paymentBill'}" 
+                   showDownloadButton="true" isTrustedSource="true" 
+                   height="90vh" width="40vw" 
+                   class="sapUiLargeMargin" title="Bill" visible="{ui>/visible-pdf2}"/>
+	</HBox>
 </core:FragmentDefinition>

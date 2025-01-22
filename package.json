@@ -12,7 +12,7 @@
     "@sap/cds": "^7.9.5",
     "@sap/cds-hana": "^2",
     "@sap/xsenv": "^5.3.0",
-    "@sap/xssec": "^4.2.4",
+    "@sap/xssec": "^4",
     "axios": "^1.7.8",
     "cors": "^2.8.5",
     "express": "^4.21.1",
@@ -20,13 +20,14 @@
     "jspdf": "^2.5.2",
     "passport": "^0.7.0",
     "path": "^0.12.7",
-    "pdfkit": "^0.15.0"
+    "pdfkit": "^0.15.0",
+    "razorpay": "^2.9.5"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
     "@sap/cds-dk": "^7",
     "@sap/eslint-plugin-cds": "^3",
-    "@sap/ux-specification": "^1.120.17",
+    "@sap/ux-specification": "UI5-1.120",
     "eslint": "^9",
     "rimraf": "^5.0.5"
   },
@@ -43,7 +44,6 @@
       "fiori": {
         "bypass_draft": true
       },
-      "auth": "dummy",
       "destinations": true,
       "ABAP_Destinations": {
         "kind": "odata-v2",
@@ -58,7 +58,7 @@
       "BPA_Trigger": {
         "kind": "odata-v2",
         "credentials": {
-          "destination": "Destination"
+          "destination": "BPA_Trigger"
         },
         "destinationOptions": {
           "selectionStrategy": "alwaysProvider",
@@ -74,7 +74,8 @@
           "selectionStrategy": "alwaysProvider",
           "jwt": null
         }
-      }
+      },
+      "auth": "xsuaa"
     },
     "sql": {
       "native_hana_associations": false

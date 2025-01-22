@@ -1,6 +1,7 @@
 sap.ui.define([
-    "sap/m/MessageToast"
-], function (MessageToast) {
+    "sap/m/MessageToast",
+    "sap/ui/core/BusyIndicator"
+], function (MessageToast, BusyIndicator) {
     'use strict';
 
     // Define fetchData as a standalone function
@@ -22,6 +23,7 @@ sap.ui.define([
 
     return {
         sync: async function (oEvent) {
+            BusyIndicator.show(0);
             try {
                 debugger;
 
@@ -33,16 +35,19 @@ sap.ui.define([
                 const response = await fetchData(sUrl);
                 console.log("Response Data:", response);
                 if (response) {
+                    BusyIndicator.hide();
                     // Show a MessageToast when response is received
                     MessageToast.show("Data Updated Succesfully in Database!");
                 }
-                return response;
+                // return response;
                 
 
             } catch (error) {
+                BusyIndicator.hide();
                 console.error("Error in sync function:", error.message || error);
                 MessageToast.show(error);
             }
+            BusyIndicator.hide();
         }
     };
 });

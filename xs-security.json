@@ -4,17 +4,18 @@
   "description": "Security profile of called application",
   "scopes": [
     {
-      "name": "uaa.user",
-      "description": "UAA"
+      "name": "$XSAPPNAME.mahindra_user",
+      "description": "UAATest"
     }
   ],
   "role-templates": [
     {
-      "name": "Token_Exchange",
-      "description": "UAA",
+      "name": "mahindra_user",
+      "description": "UAATest roletemplate",
       "scope-references": [
-        "uaa.user"
+        "$XSAPPNAME.mahindra_user"
       ]
     }
-  ]
+  ],
+  "attributes": []
 }
