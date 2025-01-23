@@ -26,7 +26,7 @@ service MyService {
     @restrict: [{ grant: ['READ', 'WRITE'], to: 'mahindra_user' }]
     entity EnquiryVehicle as projection on db.EnquiryVehicle;
 
-    // @restrict: [{ grant: ['READ', 'WRITE'], to: 'mahindra_user' }]
+    @restrict: [{ grant: ['READ', 'WRITE'], to: 'mahindra_user' }]
     entity EnquiryFiles as projection on db.EnquiryFiles;
 
     @odata.draft.bypass

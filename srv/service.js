@@ -20,8 +20,17 @@ const { constants } = require('module');
 module.exports = async function (params, srv) {
 
     let { PurchaseEnquiry, EnquiryVehicle, Customer, EnquiryFiles, EnquiryComments, PurchaseOrder, PurchaseVehicle, PurchaseComments, VehicleInventory, SH, PurchasePartners, EnquiryPartners} = this.entities;
-
+   
     //Dhanush Gangatkar
+    function getXsuaaAuth() {
+        return {
+            clientid:process.env.clientid,
+            clientsecret:process.env.clientsecret,
+            xsuaaauthurl:process.env.xsuaaauthurl,
+            userid:process.env.userid,
+            userpassword:process.env.userpassword
+        }
+    }
 
     this.before('CREATE', PurchaseEnquiry, async (req, next) => {
         try {
@@ -343,6 +352,7 @@ module.exports = async function (params, srv) {
 
     this.before('UPDATE', PurchaseEnquiry, async (req) => {
         console.log('before update');
+        
         console.dir(req, { depth: null });
         // abap validation
         if(req.data.salesOrg || req.data.distributionChannels || req.data.division){
@@ -1717,7 +1727,9 @@ module.exports = async function (params, srv) {
 
         // const oauthToken = await getOAuthTokenfinance();
         // const token = `Bearer ${oauthToken}`;
-
+        const Auth = getXsuaaAuth();
+        console.log('Authorization', Auth);
+        const sAuth = JSON.stringify(Auth);
         const workflowData =
         {
             "definitionId": "us10.44f10b5ftrial.releaseso.sORelease",
@@ -1765,7 +1777,7 @@ module.exports = async function (params, srv) {
                 "purchorg": data.purchOrg || '',
                 "purchgroup": data.purchGroup || '',
                 "vendorcode": data.vendorCode || '',
-                "baseurl" : po.baseUrl || ''  
+                "baseurl" : sAuth || ''  
             }
         }
          console.log(workflowData);
