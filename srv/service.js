@@ -578,6 +578,9 @@ module.exports = async function (params, srv) {
 
                 // const oauthToken = await getOAuthToken2();
                 // const token = `Bearer ${oauthToken}`;
+                const Auth = getXsuaaAuth();
+                console.log('Authorization divya', Auth);
+                const sAuth = JSON.stringify(Auth);
 
                 var workflowContent = {
 
@@ -616,7 +619,7 @@ module.exports = async function (params, srv) {
                         "purchorg": poData1[0].purchOrg || '',
                         "vendorcode": poData1[0].vendorCode || '',
                         "_sapcustomerid": cust[0].sapCustomerId || '',
-                        "baseurl" : ''
+                        "baseurl": sAuth || ""
                     }
                 };
                 console.log('PO flow data',workflowContent);
@@ -652,6 +655,7 @@ module.exports = async function (params, srv) {
             
             // var comments =await SELECT.from(EnquiryVehicle).where({ purchaseEnquiryUuid: req.purchaseEnquiryUuid });
             console.log('Prince', purchaseEnquiry[0].purchaseEnquiryId);
+            
             if (purchaseEnquiry[0].commentsText) {
                 const newComment = {
                     commentId: cds.utils.uuid(),
@@ -682,6 +686,9 @@ module.exports = async function (params, srv) {
 
             // const oauthToken = await getOAuthTokenCR();
             // const token = `Bearer ${oauthToken}`;
+            const Auth = getXsuaaAuth();
+            console.log('Authorization Prince', Auth);
+            const sAuth = JSON.stringify(Auth);
             var workflowData = {
                 "definitionId": "us10.44f10b5ftrial.enquiry.enquiryFlow",
                 "context": {
@@ -710,7 +717,9 @@ module.exports = async function (params, srv) {
                     "postalcode": cust[0]?.postalCode || "",
                     "location": cust[0]?.location || "",
                     "link": vehicleDetails,
-                    "vendorcode": purchaseEnquiry[0]?.vendorCode || ""
+                    "vendorcode": purchaseEnquiry[0]?.vendorCode || "",
+                     "baseurl": sAuth || ""
+                    
                 }
             };
             console.log('Enquiry Flow data', workflowData);
@@ -786,6 +795,10 @@ module.exports = async function (params, srv) {
             // const oauthToken = await getOAuthToken();
             // const token = `Bearer ${oauthToken}`;
             //nida's flow
+            const Auth = getXsuaaAuth();
+            console.log('Authorization Credit Request', Auth);
+            const sAuth = JSON.stringify(Auth);
+
             var workflowContent = {
                "definitionId": "us10.44f10b5ftrial.payment1.approvalMatrix",
                 "context": {
@@ -831,7 +844,7 @@ module.exports = async function (params, srv) {
                     "vendorcode": purchase.vendorCode || "",
                     "companycode": purchase.companyCode || "",
                     "_sapcustomerid": cust[0].sapCustomerId || "",
-                    "baseurl" : ''
+                    "baseurl": sAuth || ""
                 }
             }
 
@@ -855,7 +868,10 @@ module.exports = async function (params, srv) {
 
             // const oauthToken = await getOAuthToken();
             // const token = `Bearer ${oauthToken}`;
-            
+            const Auth = getXsuaaAuth();
+                console.log('Authorization nida', Auth);
+                const sAuth = JSON.stringify(Auth);
+
             //nida flow
             var workflowContent = {
                 "definitionId": "us10.44f10b5ftrial.payment1.paymentProcess",
@@ -900,7 +916,7 @@ module.exports = async function (params, srv) {
                     "vendorcode": purchase.vendorCode || "",
                     "companycode": purchase.companyCode || "",
                     "_sapcustomerid": cust[0].sapCustomerId || "",
-                    "baseurl" : ''
+                    "baseurl": sAuth || ""
                 }
             };
             console.log('nida',workflowContent);
